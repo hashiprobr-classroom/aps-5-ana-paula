@@ -25,22 +25,13 @@ public class ItemAbstracao {
 
     public int calcula(double oferta){
         int maior = 0;
-        if (!ofertas.isEmpty()) {
-            for (int i = 1; i < ofertas.size(); i++) {
-                if (ofertas.get(maior) < ofertas.get(i)) {
-                    maior = i;
-                }
-            }
-            if (oferta <= ofertas.get(maior)) {
-                return maior;
+        for (int i = 1; i < ofertas.size(); i++) {
+            if (ofertas.get(maior) < ofertas.get(i)) {
+                maior = i;
             }
         }
-        else{
-            for (int i = 1; i < ofertas.size(); i++) {
-                if (ofertas.get(maior) < ofertas.get(i)) {
-                    maior = i;
-                }
-            }
+        if (oferta <= ofertas.get(maior)) {
+            return maior;
         }
         return maior;
     }
