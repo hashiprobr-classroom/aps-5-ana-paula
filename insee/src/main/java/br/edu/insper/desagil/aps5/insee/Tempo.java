@@ -39,6 +39,6 @@ public class Tempo extends Referencia {
 
     @Override
     public int comointeiro() {
-        return (this.hora * 60) + this.minuto;
+        return ((this.hora * 60) + this.minuto);
     }
 }
