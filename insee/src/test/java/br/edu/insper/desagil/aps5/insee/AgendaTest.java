@@ -42,4 +42,30 @@ public class AgendaTest {
         assertTrue(evento.valido());
 
     }
+
+    @Test
+    void adicionaInvalido() {
+        Data dataInicio = new Data();
+        dataInicio.atualiza(2025, 9, 26);
+        Tempo tempoInicio = new Tempo();
+        tempoInicio.atualiza(10, 0);
+
+        Data dataFim = new Data();
+        dataFim.atualiza(2024, 9, 26);
+        Tempo tempoFim = new Tempo();
+        tempoFim.atualiza(12, 0);
+
+        DataTempo inicio = new DataTempo(dataInicio, tempoInicio);
+        DataTempo fim = new DataTempo(dataFim, tempoFim);
+
+        Evento evento = new Evento(inicio, fim);
+        
+        assertFalse(evento.valido());
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            agenda.adiciona(evento);
+        });
+
+        assertEquals("Evento inválido!", exception.getMessage());
+    }
 }
