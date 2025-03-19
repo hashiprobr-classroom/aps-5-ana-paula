@@ -21,7 +21,25 @@ public class AgendaTest {
 
     @Test
     void adicionaValido(){
-        Evento evento = new Evento();
-        agenda.adiciona();
+
+        Data dataInicio = new Data();
+        dataInicio.atualiza(2024, 9, 26);
+        Tempo tempoInicio = new Tempo();
+        tempoInicio.atualiza(10, 0);
+
+
+        Data dataFim = new Data();
+        dataFim.atualiza(2024, 9, 26);
+        Tempo tempoFim = new Tempo();
+        tempoFim.atualiza(12, 0);
+
+        DataTempo inicio = new DataTempo(dataInicio, tempoInicio);
+        DataTempo fim = new DataTempo(dataFim, tempoFim);
+
+        Evento evento = new Evento(inicio, fim);
+        agenda.adiciona(evento);
+
+        assertTrue(evento.valido());
+
     }
 }
