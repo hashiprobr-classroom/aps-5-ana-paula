@@ -1,10 +1,10 @@
 package br.edu.insper.desagil.aps5.insee;
 
-public class Referencia {
-    protected String observacao;
+public abstract class Referencia {
+    private String observacao;
 
-    public Referencia() {
-        this.observacao = "";
+    public Referencia(String observacao) {
+        this.observacao = observacao;
     }
 
     public String getObservacao() {
@@ -15,7 +15,6 @@ public class Referencia {
         this.observacao = observacao;
     }
 
-    public int comointeiro() {
-        throw new UnsupportedOperationException("Método deve ser implementado em subclasses");
-    }
+    //O enunciado cita "implementação de método". Portanto, o método deve ser abstrato
+    public abstract int comoInteiro();
 }

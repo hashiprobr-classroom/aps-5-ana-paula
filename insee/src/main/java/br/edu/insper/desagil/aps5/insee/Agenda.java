@@ -1,24 +1,26 @@
 package br.edu.insper.desagil.aps5.insee;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Agenda {
-    private final List<Evento> eventos;
+    private ArrayList<Evento> eventos;
 
-    public Agenda() {
-        this.eventos = new ArrayList<>();
+    public Agenda(ArrayList<Evento> eventos) {
+       this.eventos = new ArrayList<>(); //está sendo inicializada como vazia
     }
 
-    public List<Evento> getEventos() {
+    public ArrayList<Evento> getEventos() {
         return eventos;
     }
 
-    public void adiciona(Evento evento) {
-        if (evento.valido()) {
-            eventos.add(evento);
-        } else {
-            throw new IllegalArgumentException("Evento inválido!");
+    public void adiciona(Evento evento){
+        try{
+            if (evento.valido()==true){
+                eventos.add(evento);
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Evento inválido!");
         }
     }
 }

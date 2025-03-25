@@ -3,21 +3,21 @@ package br.edu.insper.desagil.aps5.insee;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Data extends Referencia {
+public class Data extends Referencia{
     private int ano;
     private int mes;
     private int dia;
-    private Map<Integer, Integer> limites;
+    private HashMap<Integer, Integer>limites;
 
-    public Data() {
+
+    public Data(String observacao){
+        super(observacao);
         this.ano = 1970;
         this.mes = 1;
         this.dia = 1;
-        this.limites = new HashMap<>();
-        this.inicializarLimites();
-    }
 
-    private void inicializarLimites() {
+        limites = new HashMap<>();
+
         limites.put(1, 31);
         limites.put(2, 28);
         limites.put(3, 31);
@@ -44,11 +44,9 @@ public class Data extends Referencia {
         return dia;
     }
 
-    public void atualiza(int ano, int mes, int dia) {
-
-        //se o valor do ano for menor que 1970, o atributo deve ser atualizado para 1970 em vez desse valor;
+    public void atualiza(int ano, int mes, int dia){
         if (ano < 1970) {
-            this.ano = 1970;
+            this.ano = 1970; //tem que ter o this para atualizar o valor daquele ano
         } else {
             this.ano = ano;
         }
@@ -74,23 +72,24 @@ public class Data extends Referencia {
         } else {
             this.dia = dia;
         }
+
     }
 
     @Override
-    public int comointeiro() {
-        int totalDias = 0;
+    public int comoInteiro() {
+        int diasTotais = 0;
 
-        // soma os anos completos
-        totalDias += (this.ano - 1970) * 365;
+        // Somar dias de anos inteiros desde 1970
+        diasTotais += (ano - 1970) * 365;
 
-        // soma os meses completos do ano atual
-        for (int i = 1; i < this.mes; i++) {
-            totalDias += limites.get(i);
+        // Somar dias de meses anteriores ao mês atual
+        for (int m = 1; m < mes; m++) {
+            diasTotais += limites.get(m); //acessa diretamente os valores do dicionário
         }
 
-        // soma os dias do mês atual
-        totalDias += (this.dia - 1);
+        diasTotais += dia - 1;
 
-        return totalDias;
+        return diasTotais;
     }
+
 }
